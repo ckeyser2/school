@@ -18,6 +18,9 @@ namespace SimplePizza
 
             pizza = chicagoStore.OrderPizza("cheese");
             Console.WriteLine("Henry ordered a " + pizza.GetName() + "\n");
+            
+            pizza = detroitStore.OrderPizza("cheese");
+            Console.WriteLine("Colette ordered a " + pizza.GetName() + "\n");
             }
 
     }
@@ -81,6 +84,19 @@ namespace SimplePizza
 
 
     }
+    
+    public class DetroitStyleCheesePizza : Pizza
+    {
+        public DetroitStyleCheesePizza()
+        {
+            name= "Detroit Style Little Caesar's cheese Pizza";
+            dough = "Regular hot-n-ready dough";
+            sauce = "Typical marinara sauce";
+            
+            toppings.Add("Little Caesar's blend");
+        }
+    }
+    
     public abstract class PizzaStore
     {
         public PizzaStore()
@@ -140,6 +156,22 @@ namespace SimplePizza
             if (type.Equals("cheese"))
             {
                 return new ChicagoStyleCheesePizza();
+            }
+            else return null;
+        }
+    }
+    
+     public class DetroitPizzaStore : PizzaStore
+    {
+  
+        public DetroitPizzaStore()
+        { }
+
+        protected override Pizza CreatePizza(string type)
+        {
+            if (type.Equals("cheese"))
+            {
+                return new DetroitStyleCheesePizza();
             }
             else return null;
         }
